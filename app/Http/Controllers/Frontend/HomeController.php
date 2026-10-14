@@ -15,9 +15,9 @@ class HomeController extends Controller
     public function index()
     {
         $page = Page::where('template', 'home')->first();
-        $seo_title = $page->seo_title ?? 'Webyotic - Enterprise Digital Engineering & Growth Agency';
-        $seo_description = $page->seo_description ?? 'High-performance web architecture, custom AI automation, and enterprise SEO engineered for fast-scaling companies.';
-        $seo_keywords = $page->seo_keywords ?? 'enterprise web development, custom software, nextjs agency, laravel solutions, ai engineering, technical seo';
+        $seo_title = $page->seo_title ?? 'Webyotic | Top SEO & Custom Programming Agency | Web & App Development';
+        $seo_description = $page->seo_description ?? 'Webyotic is an industry-leading digital engineering & programmatic SEO agency. We develop high-speed web platforms, mobile applications, AI workflows, and data-driven organic search architectures that rank #1 on Google.';
+        $seo_keywords = $page->seo_keywords ?? 'SEO digital company, custom programming agency, web development company, mobile app development, programmatic SEO, enterprise software engineering, Laravel developers, Nextjs agency, technical SEO services, conversion rate optimization';
 
         $sliders = Slider::where('is_active', true)->orderBy('order', 'asc')->get();
         $services = Service::take(6)->get();

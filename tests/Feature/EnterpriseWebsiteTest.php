@@ -166,4 +166,31 @@ class EnterpriseWebsiteTest extends TestCase
             'seo_stat_val_1' => '+500%',
         ]);
     }
+
+    public function test_homepage_renders_about_us_and_seo_ranking_sections(): void
+    {
+        $response = $this->get('/');
+        $response->assertStatus(200);
+
+        // Verify Dynamic About Us section
+        $response->assertSee('ABOUT WEBYOTIC');
+        $response->assertSee('WHO WE ARE');
+        $response->assertSee('Crafting');
+        $response->assertSee('High-Performance Code');
+        $response->assertSee('Search Authority');
+        $response->assertSee('Our Story &amp; Purpose', false);
+        $response->assertSee('Founders &amp; Leadership', false);
+        $response->assertSee('The Webyotic Standard');
+        $response->assertSee('Google Lighthouse Benchmark');
+
+        // Verify SEO & Ranking Dominance section
+        $response->assertSee('GOOGLE RANKING ENGINE');
+        $response->assertSee('Engineered to Rank #1 on Google');
+        $response->assertSee('Traditional Web Agency vs. Webyotic High-Performance Engineering');
+        $response->assertSee('Server Speed &amp; TTFB Latency', false);
+        $response->assertSee('Google Core Web Vitals');
+        $response->assertSee('Schema.org JSON-LD Knowledge Graph');
+        $response->assertSee('Programmatic Long-Tail Capture');
+        $response->assertSee('Live Google SERP Feature Mockup');
+    }
 }

@@ -32,6 +32,7 @@ class ServiceController extends Controller
         }
 
         Service::create($data);
+        \Illuminate\Support\Facades\Cache::forget('nav_services');
 
         return redirect()->route('admin.services.index')->with('success', 'Service created successfully.');
     }
@@ -49,6 +50,7 @@ class ServiceController extends Controller
         ]);
 
         $service->update($request->all());
+        \Illuminate\Support\Facades\Cache::forget('nav_services');
 
         return redirect()->route('admin.services.index')->with('success', 'Service updated successfully.');
     }
@@ -56,6 +58,7 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         $service->delete();
+        \Illuminate\Support\Facades\Cache::forget('nav_services');
         return redirect()->route('admin.services.index')->with('success', 'Service deleted successfully.');
     }
 }

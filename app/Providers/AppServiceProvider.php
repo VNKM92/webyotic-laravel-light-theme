@@ -32,6 +32,14 @@ class AppServiceProvider extends ServiceProvider
                 View::share('siteSettings', $siteSettings);
             }
 
+            if (Schema::hasTable('services')) {
+                View::composer(['frontend.layouts.app', 'frontend.*'], function ($view) {
+                    $view->with('navServices', Cache::remember('nav_services', 3600, function () {
+                        return \App\Models\Service::all();
+                    }));
+                });
+            }
+
             if (Schema::hasTable('inquiries')) {
                 View::composer(['layouts.admin', 'admin.*'], function ($view) {
                     $unreadInquiriesCount = Inquiry::where('status', 'new')->count();
